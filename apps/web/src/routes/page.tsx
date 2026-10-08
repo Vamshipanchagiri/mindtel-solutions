@@ -8,18 +8,309 @@ import { InsightsGrid } from '@/components/insights-grid';
 import { ContactForm } from '@/components/contact-form';
 import { FinalCta } from '@/components/final-cta';
 import { services, industries, projects, articles, faqs, email } from '@/data/site';
-const pages:Record<string,{title:string;intro:string;sections:{title:string;text:string}[]}>= {
-about:{title:'Technology should make work better.',intro:'We bring business understanding, thoughtful design and dependable engineering into the same conversation.',sections:[{title:'Who we are',text:'Mindtel Solutions is a software and technology company focused on solving practical business problems. Our work connects people, processes and digital experiences.'},{title:'What we do',text:'We design and develop software, websites, mobile applications and technology foundations. From an early idea to an evolving business system, our focus is usefulness.'},{title:'Our approach',text:'Listen first. Define the problem clearly. Build collaboratively. We keep the business context visible throughout design, development and delivery.'},{title:'Our values',text:'Clarity in communication. Care in execution. Accountability in delivery. We value practical thinking, thoughtful collaboration and technology people can trust.'},{title:'Our mission',text:'To help businesses work better through software and technology designed around their actual needs.'},{title:'Our vision',text:'A future where technology makes work simpler, decisions clearer and meaningful growth more achievable.'}]},
-services:{title:'Technology capabilities for modern businesses.',intro:'Ten connected capabilities. One considered approach to the way your business works.',sections:[]},
-industries:{title:'Your industry. Understood.',intro:'Different operating environments demand different thinking. We build with your context in mind.',sections:industries.map(([title,heading,text])=>({title,text:heading+' '+text}))},
-work:{title:'Possibilities, made tangible.',intro:'A collection of solution concepts illustrating what thoughtful technology can do. These are not commissioned client projects.',sections:[]},
-insights:{title:'Thinking behind better technology.',intro:'Practical perspectives on software, design and engineering. Editorial sample insights from Mindtel Solutions.',sections:[]},
-careers:{title:'Build technology with purpose.',intro:'For people who care about the problem as much as the code.',sections:[{title:'Why Mindtel',text:'We value people who ask thoughtful questions, take care in their work and enjoy solving meaningful problems together.'},{title:'Work culture',text:'Our approach to work emphasizes clear communication, shared ownership and constructive feedback. Good ideas can come from any discipline.'},{title:'Areas of opportunity',text:'Our capability areas include software engineering, web and mobile development, product design, cloud, data and quality assurance. These are areas of interest, not advertised vacancies.'},{title:'Learning & growth',text:'Technology keeps moving. We value curiosity, knowledge sharing and a willingness to learn through practical challenges.'},{title:'Current opportunities',text:'There are no confirmed openings published here at this time. Interested in working with us? Send an introduction to '+email+'.'},{title:'Internship opportunities',text:'No internship openings are currently listed. You are welcome to share your interests, learning goals and portfolio by email for consideration when a relevant opportunity becomes available.'}]},
-contact:{title:'Let’s build something useful.',intro:'Tell us what you’re building, improving or trying to solve.',sections:[]},
-faq:{title:'Good questions. Clear answers.',intro:'A starting point for understanding how we approach technology projects.',sections:[]},
-'privacy-policy':{title:'Privacy Policy',intro:'How Mindtel Solutions handles information submitted through this website.',sections:[{title:'Information you share',text:'The contact form collects your name, business email, optional company and phone number, selected service and project details. Please do not include sensitive personal information or confidential credentials.'},{title:'How we use it',text:'We store enquiry information to review your request and respond to you. We do not sell your enquiry information. Access is restricted to authorized administration.'},{title:'Your choices',text:'To request access, correction or deletion of your enquiry information, contact '+email+'. We retain information only as needed for business correspondence and applicable obligations.'},{title:'Website services',text:'This site uses hosting infrastructure and externally served web fonts. Those providers may receive technical request information such as your IP address. This website does not include advertising tracking.'}]},
- 'terms-and-conditions':{title:'Terms & Conditions',intro:'Terms for using the Mindtel Solutions website.',sections:[{title:'Website information',text:'Website content describes our capabilities and provides general information. It is not a binding offer or professional advice. Project scope, fees, timelines and responsibilities are agreed separately in writing.'},{title:'Concepts and editorial content',text:'Work examples are clearly labeled solution concepts, not client case studies. Insights are general editorial material and should be evaluated against your own requirements.'},{title:'Acceptable use',text:'Do not misuse this website, attempt unauthorized access or submit unlawful material. Mindtel Solutions content may not be represented as your own.'},{title:'Questions',text:'For questions about these terms or an engagement, contact '+email+'.'}]}
+
+const pages: Record<
+	string,
+	{
+		title: string;
+		intro: string;
+		sections: { title: string; text: string }[];
+	}
+> = {
+	about: {
+		title: 'Technology should make work better.',
+		intro: 'We bring business understanding, thoughtful design and dependable engineering into the same conversation.',
+		sections: [
+			{
+				title: 'Who we are',
+				text: 'Mindtel Solutions is a software and technology company focused on solving practical business problems. Our work connects people, processes and digital experiences.',
+			},
+			{
+				title: 'What we do',
+				text: 'We design and develop software, websites, mobile applications and technology foundations. From an early idea to an evolving business system, our focus is usefulness.',
+			},
+			{
+				title: 'Our approach',
+				text: 'Listen first. Define the problem clearly. Build collaboratively. We keep the business context visible throughout design, development and delivery.',
+			},
+			{
+				title: 'Our values',
+				text: 'Clarity in communication. Care in execution. Accountability in delivery. We value practical thinking, thoughtful collaboration and technology people can trust.',
+			},
+			{
+				title: 'Our mission',
+				text: 'To help businesses work better through software and technology designed around their actual needs.',
+			},
+			{
+				title: 'Our vision',
+				text: 'A future where technology makes work simpler, decisions clearer and meaningful growth more achievable.',
+			},
+		],
+	},
+
+	services: {
+		title: 'Technology capabilities for modern businesses.',
+		intro: 'Ten connected capabilities. One considered approach to the way your business works.',
+		sections: [],
+	},
+
+	industries: {
+		title: 'Your industry. Understood.',
+		intro: 'Different operating environments demand different thinking. We build with your context in mind.',
+		sections: industries.map(([title, heading, text]) => ({
+			title,
+			text: heading + ' ' + text,
+		})),
+	},
+
+	work: {
+		title: 'Possibilities, made tangible.',
+		intro: 'A collection of solution concepts illustrating what thoughtful technology can do. These are not commissioned client projects.',
+		sections: [],
+	},
+
+	insights: {
+		title: 'Thinking behind better technology.',
+		intro: 'Practical perspectives on software, design and engineering. Editorial sample insights from Mindtel Solutions.',
+		sections: [],
+	},
+
+	careers: {
+		title: 'Build technology with purpose.',
+		intro: 'For people who care about the problem as much as the code.',
+		sections: [
+			{
+				title: 'Why Mindtel',
+				text: 'We value people who ask thoughtful questions, take care in their work and enjoy solving meaningful problems together.',
+			},
+			{
+				title: 'Work culture',
+				text: 'Our approach to work emphasizes clear communication, shared ownership and constructive feedback. Good ideas can come from any discipline.',
+			},
+			{
+				title: 'Areas of opportunity',
+				text: 'Our capability areas include software engineering, web and mobile development, product design, cloud, data and quality assurance. These are areas of interest, not advertised vacancies.',
+			},
+			{
+				title: 'Learning & growth',
+				text: 'Technology keeps moving. We value curiosity, knowledge sharing and a willingness to learn through practical challenges.',
+			},
+			{
+				title: 'Current opportunities',
+				text: 'There are no confirmed openings published here at this time. Interested in working with us? Send an introduction to ' + email + '.',
+			},
+			{
+				title: 'Internship opportunities',
+				text: 'No internship openings are currently listed. You are welcome to share your interests, learning goals and portfolio by email for consideration when a relevant opportunity becomes available.',
+			},
+		],
+	},
+
+	contact: {
+		title: 'Let’s build something useful.',
+		intro: 'Tell us what you’re building, improving or trying to solve.',
+		sections: [],
+	},
+
+	faq: {
+		title: 'Good questions. Clear answers.',
+		intro: 'A starting point for understanding how we approach technology projects.',
+		sections: [],
+	},
+
+	'privacy-policy': {
+		title: 'Privacy Policy',
+		intro: 'How Mindtel Solutions handles information submitted through this website.',
+		sections: [
+			{
+				title: 'Information you share',
+				text: 'The contact form collects your name, business email, optional company and phone number, selected service and project details. Please do not include sensitive personal information or confidential credentials.',
+			},
+			{
+				title: 'How we use it',
+				text: 'We store enquiry information to review your request and respond to you. We do not sell your enquiry information. Access is restricted to authorized administration.',
+			},
+			{
+				title: 'Your choices',
+				text: 'To request access, correction or deletion of your enquiry information, contact ' + email + '. We retain information only as needed for business correspondence and applicable obligations.',
+			},
+			{
+				title: 'Website services',
+				text: 'This site uses hosting infrastructure and externally served web fonts. Those providers may receive technical request information such as your IP address. This website does not include advertising tracking.',
+			},
+		],
+	},
+
+	'terms-and-conditions': {
+		title: 'Terms & Conditions',
+		intro: 'Terms for using the Mindtel Solutions website.',
+		sections: [
+			{
+				title: 'Website information',
+				text: 'Website content describes our capabilities and provides general information. It is not a binding offer or professional advice. Project scope, fees, timelines and responsibilities are agreed separately in writing.',
+			},
+			{
+				title: 'Concepts and editorial content',
+				text: 'Work examples are clearly labeled solution concepts, not client case studies. Insights are general editorial material and should be evaluated against your own requirements.',
+			},
+			{
+				title: 'Acceptable use',
+				text: 'Do not misuse this website, attempt unauthorized access or submit unlawful material. Mindtel Solutions content may not be represented as your own.',
+			},
+			{
+				title: 'Questions',
+				text: 'For questions about these terms or an engagement, contact ' + email + '.',
+			},
+		],
+	},
 };
-export function loader({params}:Route.LoaderArgs){const path=params['*']||'';const [base,slug]=path.split('/');if(slug){const item=base==='services'?services.find(s=>s.slug===slug):base==='work'?projects.find(p=>p.slug===slug):base==='insights'?articles.find(a=>a.slug===slug):null;if(!item)throw new Response('Page not found',{status:404});return {base,slug,page:null};}if(!pages[base])throw new Response('Page not found',{status:404});return {base,slug:null,page:pages[base]};}
-export function meta({matches,location,loaderData}:Route.MetaArgs){const d=loaderData;const service=services.find(s=>s.slug===d?.slug);const article=articles.find(s=>s.slug===d?.slug);const project=projects.find(s=>s.slug===d?.slug);return seo({matches,location},{title:(service?.name||article?.title||project?.label||d?.page?.title||'Page not found')+' | Mindtel',description:service?.description||article?.description||project?.description||d?.page?.intro||'Explore Mindtel Solutions.',type:article?'article':'website'});}
-export default function Page({loaderData}:Route.ComponentProps){const {base,slug,page}=loaderData;if(slug&&base==='services')return <><ServiceDetail service={services.find(s=>s.slug===slug)!}/><FinalCta/></>;if(slug&&base==='insights'){const a=articles.find(x=>x.slug===slug)!;return <><PageSections label={a.category} title={a.title} intro={a.description} sections={a.body.map((text,i)=>({title:['Start with context','Make deliberate choices','Keep improving'][i],text}))}/><FinalCta/></>;}if(slug&&base==='work'){const p=projects.find(x=>x.slug===slug)!;return <><PageSections label="Solution concept" title={p.title} intro={p.description} sections={[{title:'The concept',text:'An illustrative '+p.label.toLowerCase()+'. This is not a real client engagement or a claim of delivered results.'},{title:'The thinking',text:'Bring related tasks and information together. Keep navigation focused, make status understandable and design around realistic user journeys.'},{title:'The possibilities',text:'The concept can be adapted through discovery, prototyping and technical planning to fit a real business context.'}]}/><WorkGrid/><FinalCta/></>;}return <>{page&&<PageSections label={base} title={page.title} intro={page.intro} sections={page.sections}/>} {base==='services'&&<ServicesGrid/>}{base==='work'&&<WorkGrid full/>}{base==='insights'&&<InsightsGrid/>}{base==='contact'&&<ContactForm/>}{base==='faq'&&<section className="section faq-section">{faqs.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</section>}{base==='careers'&&<section className="section"><h2>Interested in working with us?</h2><a className="contact-email" href={'mailto:'+email}>{email}</a></section>}{base!=='contact'&&<FinalCta/>}</>}
+
+export function meta({ matches, location }: Route.MetaArgs) {
+	const path = location.pathname.replace(/^\/+|\/+$/g, '');
+	const [, slug] = path.split('/');
+	const base = path.split('/')[0];
+
+	const service = services.find((s) => s.slug === slug);
+	const article = articles.find((s) => s.slug === slug);
+	const project = projects.find((s) => s.slug === slug);
+	const page = pages[base];
+
+	return seo(
+		{ matches, location },
+		{
+			title:
+				(service?.name ||
+					article?.title ||
+					project?.label ||
+					page?.title ||
+					'Page not found') + ' | Mindtel',
+			description:
+				service?.description ||
+				article?.description ||
+				project?.description ||
+				page?.intro ||
+				'Explore Mindtel Solutions.',
+			type: article ? 'article' : 'website',
+		},
+	);
+}
+
+export default function Page({ location }: Route.ComponentProps) {
+	const path = location.pathname.replace(/^\/+|\/+$/g, '');
+	const parts = path.split('/');
+	const base = parts[0];
+	const slug = parts[1];
+	const page = pages[base];
+
+	if (slug && base === 'services') {
+		const service = services.find((s) => s.slug === slug);
+
+		if (!service) return null;
+
+		return (
+			<>
+				<ServiceDetail service={service} />
+				<FinalCta />
+			</>
+		);
+	}
+
+	if (slug && base === 'insights') {
+		const article = articles.find((x) => x.slug === slug);
+
+		if (!article) return null;
+
+		return (
+			<>
+				<PageSections
+					label={article.category}
+					title={article.title}
+					intro={article.description}
+					sections={article.body.map((text, i) => ({
+						title: ['Start with context', 'Make deliberate choices', 'Keep improving'][i] || 'Continue',
+						text,
+					}))}
+				/>
+				<FinalCta />
+			</>
+		);
+	}
+
+	if (slug && base === 'work') {
+		const project = projects.find((x) => x.slug === slug);
+
+		if (!project) return null;
+
+		return (
+			<>
+				<PageSections
+					label="Solution concept"
+					title={project.title}
+					intro={project.description}
+					sections={[
+						{
+							title: 'The concept',
+							text:
+								'An illustrative ' +
+								project.label.toLowerCase() +
+								'. This is not a real client engagement or a claim of delivered results.',
+						},
+						{
+							title: 'The thinking',
+							text: 'Bring related tasks and information together. Keep navigation focused, make status understandable and design around realistic user journeys.',
+						},
+						{
+							title: 'The possibilities',
+							text: 'The concept can be adapted through discovery, prototyping and technical planning to fit a real business context.',
+						},
+					]}
+				/>
+				<WorkGrid />
+				<FinalCta />
+			</>
+		);
+	}
+
+	return (
+		<>
+			{page && (
+				<PageSections
+					label={base}
+					title={page.title}
+					intro={page.intro}
+					sections={page.sections}
+				/>
+			)}
+
+			{base === 'services' && <ServicesGrid />}
+			{base === 'work' && <WorkGrid full />}
+			{base === 'insights' && <InsightsGrid />}
+			{base === 'contact' && <ContactForm />}
+
+			{base === 'faq' && (
+				<section className="section faq-section">
+					{faqs.map(([q, a]) => (
+						<details key={q}>
+							<summary>
+								{q}
+								<span>+</span>
+							</summary>
+							<p>{a}</p>
+						</details>
+					))}
+				</section>
+			)}
+
+			{base === 'careers' && (
+				<section className="section">
+					<h2>Interested in working with us?</h2>
+					<a className="contact-email" href={'mailto:' + email}>
+						{email}
+					</a>
+				</section>
+			)}
+
+			{base !== 'contact' && <FinalCta />}
+		</>
+	);
+}
