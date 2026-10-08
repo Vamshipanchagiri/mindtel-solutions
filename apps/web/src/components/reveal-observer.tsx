@@ -1,0 +1,2 @@
+import { useEffect } from 'react';
+export function RevealObserver(){useEffect(()=>{const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:0.08});const scan=()=>document.querySelectorAll('.reveal:not(.visible)').forEach(e=>observer.observe(e));scan();const mutation=new MutationObserver(scan);mutation.observe(document.getElementById('root')!,{childList:true,subtree:true});return()=>{observer.disconnect();mutation.disconnect()}},[]);return null;}

@@ -1,0 +1,3 @@
+import { siteOrigin } from '@/lib/site-origin.server';
+import { services, articles, projects } from '@/data/site';
+export function loader({request}:{request:Request}){const origin=siteOrigin(request);return new Response('# Mindtel Solutions\n\n> Software and technology designed around real business needs. Work entries are illustrative concepts, not client projects.\n\n'+[...services.map(s=>`- [${s.name}](${origin}/services/${s.slug}): ${s.description}`),...projects.map(p=>`- [Concept: ${p.title}](${origin}/work/${p.slug}): ${p.description}`),...articles.map(a=>`- [${a.title}](${origin}/insights/${a.slug}): ${a.description}`)].join('\n'),{headers:{'Content-Type':'text/plain; charset=utf-8'}});}

@@ -1,0 +1,5 @@
+import { Link } from 'react-router';
+import { ArrowUpRight, Code2, Globe, Smartphone, PenTool, Cloud, Cpu, BarChart3, Shield, GitBranch, ScanLine } from 'lucide-react';
+import { services } from '@/data/site';
+const icons=[Code2,Globe,Smartphone,PenTool,Cloud,Cpu,BarChart3,Shield,GitBranch,ScanLine];
+export function ServicesGrid(){return <section className="section services-section reveal"><div className="section-heading"><div><span className="eyebrow">02 / OUR CAPABILITIES</span><h2>What we build<span className="accent">.</span></h2></div><p>From the first idea to the next evolution.<br/>The expertise to connect it all.</p></div><div className="services-grid">{services.map((s,i)=>{const Icon=icons[i];return <Link className="service-card" to={'/services/'+s.slug} key={s.slug}><div><span className="card-number">{String(i+1).padStart(2,'0')}</span><ArrowUpRight size={19}/></div><Icon className="service-icon" size={27} strokeWidth={1.3}/><h3>{s.name}</h3><p>{s.description}</p></Link>})}</div></section>}
