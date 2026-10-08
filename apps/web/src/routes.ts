@@ -6,6 +6,4 @@ export default [
 	route('*', 'routes/page.tsx'),
 	route('sitemap.xml', 'routes/sitemap.xml.ts'),
 	route('robots.txt', 'routes/robots.txt.ts'),
-	route('api/health', 'routes/api.health.ts'),
-	route('api/*', 'routes/api.$.ts'),
 ] satisfies RouteConfig;
