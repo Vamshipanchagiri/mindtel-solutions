@@ -1,4 +1,72 @@
 import { Link } from 'react-router';
 import { ArrowUpRight } from 'lucide-react';
 import { email, services } from '@/data/site';
-export function SiteFooter(){return <footer className="site-footer"><div className="footer-grid"><div><Link className="wordmark" to="/">MINDTEL SOLUTIONS</Link><p>Software and technology solutions designed around real business needs.</p><a className="email-link" href={'mailto:'+email}>{email} <ArrowUpRight size={16}/></a></div><div><span className="eyebrow">COMPANY</span>{['About','Industries','Work','Insights','Careers','Contact','FAQ'].map(x=><Link key={x} to={'/'+x.toLowerCase()}>{x}</Link>)}</div><div className="footer-services"><span className="eyebrow">CAPABILITIES</span>{services.map(s=><Link key={s.slug} to={'/services/'+s.slug}>{s.name}</Link>)}</div></div><div className="footer-bottom"><span>© 2026 Mindtel Solutions. All rights reserved.</span><div><Link to="/privacy-policy">Privacy Policy</Link><Link to="/terms-and-conditions">Terms & Conditions</Link></div><span>Thoughtful technology. Real purpose.</span></div></footer>}
+
+export function SiteFooter() {
+  return (
+    <footer className="site-footer">
+      <div className="footer-grid">
+        <div>
+          <Link className="wordmark" to="/">
+            MINDTEL SOLUTIONS
+          </Link>
+
+          <p>
+            Software and technology solutions designed around real business needs.
+          </p>
+
+          <p className="footer-address">
+            4th Floor, Mahaveer Gateway,
+            <br />
+            Financial District, Nanakramguda, Gachibowli,
+            <br />
+            Hyderabad, Telangana – 500032, India.
+          </p>
+
+          <a className="email-link" href={'mailto:' + email}>
+            {email} <ArrowUpRight size={16} />
+          </a>
+        </div>
+
+        <div>
+          <span className="eyebrow">COMPANY</span>
+
+          {[
+            'About',
+            'Industries',
+            'Work',
+            'Insights',
+            'Careers',
+            'Contact',
+            'FAQ',
+          ].map(x => (
+            <Link key={x} to={'/' + x.toLowerCase()}>
+              {x}
+            </Link>
+          ))}
+        </div>
+
+        <div className="footer-services">
+          <span className="eyebrow">CAPABILITIES</span>
+
+          {services.map(s => (
+            <Link key={s.slug} to={'/services/' + s.slug}>
+              {s.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <span>© 2026 Mindtel Solutions. All rights reserved.</span>
+
+        <div>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/terms-and-conditions">Terms &amp; Conditions</Link>
+        </div>
+
+        <span>Thoughtful technology. Real purpose.</span>
+      </div>
+    </footer>
+  );
+}
