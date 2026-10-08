@@ -26,7 +26,7 @@ export const links: Route.LinksFunction = () => [
 	},
 	{
 		rel: 'stylesheet',
-		href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap',
+		href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap',
 	},
 ];
 
@@ -35,24 +35,19 @@ export const links: Route.LinksFunction = () => [
  * `og:url` tags, and advertises the sitemap to crawlers that read response
  * headers rather than HTML.
  *
- * A `meta` export can only reach server data through `matches`, and the `headers`
- * export cannot see loader data at all, so both have to travel this way.
+ * A `meta` export can only reach server data through `matches`.
  */
 export function loader({ request }: Route.LoaderArgs) {
 	const origin = siteOrigin(request);
 
 	return data(
 		{ origin },
-		{ headers: { Link: `<${origin}/sitemap.xml>; rel="sitemap"; type="application/xml"` } },
+		{
+			headers: {
+				Link: `<${origin}/sitemap.xml>; rel="sitemap"; type="application/xml"`,
+			},
+		},
 	);
-}
-
-/**
- * A page route that exports `headers` replaces this one, so merge `parentHeaders`
- * there rather than returning only that route's own headers.
- */
-export function headers({ loaderHeaders }: Route.HeadersArgs) {
-	return loaderHeaders;
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -60,7 +55,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 		<html lang="en">
 			<head>
 				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1"
+				/>
 				<Meta />
 				<Links />
 				<HorizonsPreviewScripts />
@@ -75,7 +73,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-	return <><SiteHeader /><main><Outlet /></main><SiteFooter /><RevealObserver /></>;
+	return (
+		<>
+			<SiteHeader />
+			<main>
+				<Outlet />
+			</main>
+			<SiteFooter />
+			<RevealObserver />
+		</>
+	);
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
