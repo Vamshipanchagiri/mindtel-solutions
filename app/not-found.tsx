@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function NotFound(){return <section className="thankyou wrap"><span className="eyebrow">404 / Page not found</span><h1>This page took a different path.</h1><p>The page may have moved or the address may be incorrect.</p><div className="hero-actions"><Link className="button" href="/">Go home</Link><Link className="text-link" href="/services">Explore services ↗</Link><Link className="text-link" href="/contact">Contact us ↗</Link></div></section>}

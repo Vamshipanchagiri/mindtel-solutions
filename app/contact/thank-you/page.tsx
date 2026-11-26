@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function ThankYou(){return <section className="thankyou wrap"><span className="eyebrow">Message received</span><h1>Thank you for reaching out.</h1><p>Your message has been submitted. If email delivery is configured, the Mindtel Solutions team will receive your enquiry.</p><div className="hero-actions"><Link className="button" href="/">Back to home</Link><Link className="text-link" href="/services">Explore services ↗</Link></div></section>}
